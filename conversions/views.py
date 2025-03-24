@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.shortcuts import render
 
 # Diccionario con factores de conversión para longitud
 conversion_factors_long = {
@@ -10,6 +11,8 @@ conversion_factors_weight = {
     "kg": 1000, "hg": 100, "dag": 10, "g": 1, "dg": 0.1, "cg": 0.01, "mg": 0.001
 }
 
+def index(request):
+    return render(request, 'conversions/index.html')
 
 #------Definicion de conversiones--------
 
@@ -124,7 +127,6 @@ def convert_temperature(request):
 
     # Si el usuario utiliza un método distinto al GET, arrojamos este mensaje.
     return JsonResponse({"error": "Método no permitido"}, status=405)
-
 
 #NOTAS:
 
